@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     belt.cpp \
     barrier.cpp \
     floppybird.cpp \
-    sprintbird.cpp
+    sprintbird.cpp \
+    strikebird.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -78,7 +79,8 @@ HEADERS  += mainwindow.h \
     belt.h \
     barrier.h \
     floppybird.h \
-    sprintbird.h
+    sprintbird.h \
+    strikebird.h
 
 FORMS    += mainwindow.ui
 

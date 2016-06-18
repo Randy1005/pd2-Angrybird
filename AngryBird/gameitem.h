@@ -14,7 +14,7 @@ public:
     GameItem(b2World *world);
     ~GameItem();
     static void setGlobalSize(QSizeF worldsize, QSizeF windowsize);
-    virtual void birdFunction();
+    virtual void birdFunction();  //for polymorphism
 
 public slots:
     void paint();

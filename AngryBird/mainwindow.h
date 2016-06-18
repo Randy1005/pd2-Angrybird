@@ -18,6 +18,8 @@
 #include <barrier.h>
 #include <floppybird.h>
 #include <sprintbird.h>
+#include <strikebird.h>
+#include <QPushButton>
 
 namespace Ui {
 class MainWindow;
@@ -34,12 +36,18 @@ public:
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
     void keyPressEvent(QKeyEvent *event);
+    void resetBirds();
+    void resetBarriers_n_Enemy();
 
-    //items
+    //Birds
     Bird *mushroom;
     FloppyBird *goomba;
-    SprintBird *blue;
+    SprintBird *kirby;
+    StrikeBird *turtle;
+    Bird *fist;
     QList<GameItem *> BirdList;
+    //items
+    Slingshot *sling;
     Barrier *wood;
     Barrier *wood2;
     Barrier *hori_wood;
@@ -51,9 +59,6 @@ public:
     int click = 0; //mouse click time capture, when I click once it runs 5 times
     int cnt = 0; //to record the 'real' mouse click time
 
-    bool firstFired = false;
-    bool secondFired = false;
-
 
 signals:
     // Signal for closing the game
@@ -61,8 +66,10 @@ signals:
 
 private slots:
     void tick();
-    // For debug slot
-    void QUITSLOT();
+    void QUITSLOT(); // For debug slot
+    void resetGame();
+    void closeGame();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;

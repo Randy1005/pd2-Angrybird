@@ -1,6 +1,7 @@
-#include "floppybird.h"
+#include "strikebird.h"
 
-FloppyBird::FloppyBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
+
+StrikeBird::StrikeBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
 {
     // Set pixmap
     g_pixmap.setPixmap(pixmap);
@@ -23,20 +24,20 @@ FloppyBird::FloppyBird(float x, float y, float radius, QTimer *timer, QPixmap pi
     fixturedef.restitution = BIRD_RESTITUTION;
     g_body->SetAngularDamping(3);
     g_body->CreateFixture(&fixturedef);
-
     // Bound timer
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
 
     scene->addItem(&g_pixmap);
 }
 
-void FloppyBird::setLinearVelocity(b2Vec2 velocity)
+void StrikeBird::setLinearVelocity(b2Vec2 velocity)
 {
     g_body->SetLinearVelocity(velocity);
 }
 
-void FloppyBird::birdFunction()
+void StrikeBird::birdFunction()
 {
     if(activateAbility)
-        g_body->SetLinearVelocity(b2Vec2(8,4));
+        g_body->SetAngularVelocity(50);
+
 }

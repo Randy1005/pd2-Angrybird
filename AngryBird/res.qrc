@@ -9,5 +9,8 @@
         <file>image/barrier.png</file>
         <file>image/barrier_hori.png</file>
         <file>image/LBJ.png</file>
+        <file>image/kirby.png</file>
+        <file>image/turtle.png</file>
+        <file>image/fist.png</file>
     </qresource>
 </RCC>

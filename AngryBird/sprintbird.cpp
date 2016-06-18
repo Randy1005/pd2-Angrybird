@@ -37,6 +37,7 @@ void SprintBird::setLinearVelocity(b2Vec2 velocity)
 
 void SprintBird::birdFunction()
 {
-    g_body->SetLinearVelocity(b2Vec2(-3,3));
+    if(activateAbility)
+        g_body->SetLinearVelocity(b2Vec2(30,-2));
 }
 
