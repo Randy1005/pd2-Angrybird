@@ -1,6 +1,6 @@
-#include "bird.h"
+#include "sprintbird.h"
 
-Bird::Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
+SprintBird::SprintBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
 {
     // Set pixmap
     g_pixmap.setPixmap(pixmap);
@@ -30,12 +30,13 @@ Bird::Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2Worl
     scene->addItem(&g_pixmap);
 }
 
-void Bird::setLinearVelocity(b2Vec2 velocity)
+void SprintBird::setLinearVelocity(b2Vec2 velocity)
 {
     g_body->SetLinearVelocity(velocity);
 }
 
-void Bird::birdFunction()
+void SprintBird::birdFunction()
 {
-    //for the ordinary bird, no bird function
+    g_body->SetLinearVelocity(b2Vec2(-3,3));
 }
+

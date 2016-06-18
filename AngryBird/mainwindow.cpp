@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+using namespace std;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -31,7 +32,8 @@ void MainWindow::showEvent(QShowEvent *)
     itemList.push_back(new Slingshot(3.5,5.5,2.5,4,QPixmap(":/image/slingshot.png").scaled(width()*0.06,height()*0.3),world,scene));
     //Create bird
     mushroom = new Bird(2,5,0.27f,&timer,QPixmap(":/image/mushroom.png").scaled(height()/9.0,height()/9.0),world,scene);
-    goomba = new Bird(2,5,0.3f,&timer,QPixmap(":/image/goo.png").scaled(height()/9.0,height()/9.0),world,scene);
+    goomba = new FloppyBird(6,8,0.3f,&timer,QPixmap(":/image/goo.png").scaled(height()/9.0,height()/9.0),world,scene);
+    blue = new SprintBird(8,8,0.27f,&timer,QPixmap(":/image/blue_bird").scaled(height()/9.0,height()/9.0),world,scene);
     //Create barrier
     wood = new Barrier(24,6,1,5,&timer,QPixmap(":/image/barrier.png").scaled(height()/10.0,height()/2.0),world,scene);
     wood2 = new Barrier(18,6,1,5,&timer,QPixmap(":/image/barrier.png").scaled(height()/10.0,height()/2.0),world,scene);
@@ -44,18 +46,10 @@ void MainWindow::showEvent(QShowEvent *)
     //Store items
     itemList.push_back(goomba);
     itemList.push_back(mushroom);
-    /*Mouse Drag*/
-    //mouse joint definition
-    /*
-    b2MouseJointDef *mouseJointDef = new b2MouseJointDef();
-    mouseJointDef->bodyA = itemList.at(1)->g_body; //bodyA is the "Land" body
-    mouseJointDef->bodyB = itemList.at(3)->g_body; //bodyB is the "mushroom" body
-    mouseJointDef->target.Set(itemList.at(3)->g_body->GetPosition().x,itemList.at(3)->g_body->GetPosition().y); //set to the position of bodyB
-    mouseJointDef->collideConnected = true; //still collide with "Land"
-    mouseJointDef->maxForce = 300*itemList.at(3)->g_body->GetMass();
-    */
 
     /*Chain*/
+    //Belt *belt = new Belt(10,10,0.6,5,&timer,QPixmap(":/image/blue_bird.png").scaled(height()/10.0,height()/10.0),world,scene);
+    /*can't do shit about this =3=*/
 
 
     // Timer
@@ -67,41 +61,80 @@ void MainWindow::showEvent(QShowEvent *)
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
 
-    // Hint: Notice the Number of every event!
     if(event->type() == QEvent::MouseButtonPress)
     {
-        /* TODO : add your code here */
+        mousePressed = true;
+
         click++;
         if(click >= 5)
         {
             cnt++;
             click = 0;
         }
-
-        if(cnt == 1)
+        cout<<cnt<<endl;
+        /*
+        if(cnt == 1 && firstFired == false)
         {
             delete mushroom;
-            Bird *mushroom = new Bird(2.4,12,0.27f,&timer,QPixmap(":/image/mushroom.png").scaled(height()/9.0,height()/9.0),world,scene);
+            mushroom = new Bird(2.4,12,0.27f,&timer,QPixmap(":/image/mushroom.png").scaled(height()/9.0,height()/9.0),world,scene);
+            firstFired = true;
+            mousePressed = true;
         }
+
+        if(cnt == 2 && secondFired == false) //cnt = 3 because I clicked once to set the goomba on slingshot
+        {
+            delete goomba;
+            goomba = new FloppyBird(2.4,12,0.27f,&timer,QPixmap(":/image/goo.png").scaled(height()/9.0,height()/9.0),world,scene);
+            secondFired = true;
+            mousePressed = true;
+        }
+        */
+
 
         //std::cout << "Press !" << std::endl ;
     }
     if(event->type() == QEvent::MouseMove)
     {
-        /* TODO : add your code here */
+        float x = QCursor::pos().x() * 32/960 - 7.0;
+        float y = 22.0 - QCursor::pos().y() * 18/540;
+        mousePosition = b2Vec2(x,y);
+        if(cnt==1 && mousePressed == true)
+        {
+            mushroom->g_body->SetTransform(mousePosition,mushroom->g_body->GetAngle());
+        }
 
-       //mouse_joint.SetTarget(b2vec2(QCursor::pos().x(),QCursor::pos().y());
+        if(cnt==2 && mousePressed == true)
+        {
+            goomba->g_body->SetTransform(mousePosition,goomba->g_body->GetAngle());
+        }
+
+        if(cnt==3 && mousePressed == true)
+        {
+            blue->g_body->SetTransform(mousePosition,blue->g_body->GetAngle());
+        }
+
+        /*
+        if(mousePressed)
+        {
+            b2MouseJointDef mousejointDef;
+            mousejointDef.bodyA = itemList.at(1)->g_body;
+            mousejointDef.bodyB = mushroom->g_body;
+            mousejointDef.collideConnected = true;
+            mousejointDef.maxForce = 400*mushroom->g_body->GetMass();
+            mousejointDef.dampingRatio = 0;
+            world->CreateJoint(&mousejointDef);
+        }
+        */
 
         //std::cout << "Move !" << std::endl ;
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
         /* TODO : add your code here */
-
-        //world->DestroyJoint(mouse_joint);
-        std::cout<<click<<std::endl;
-        //std::cout << "Release !" << std::endl ;
+        mousePressed = false;
+        cout << "Release !" << endl;
     }
+
     return false;
 }
 
@@ -121,4 +154,27 @@ void MainWindow::QUITSLOT()
 {
     // For debug
     std::cout << "Quit Game Signal receive !" << std::endl ;
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Z)
+    {
+        delete mushroom;
+        mushroom = new Bird(2.4,12,0.27f,&timer,QPixmap(":/image/mushroom.png").scaled(height()/9.0,height()/9.0),world,scene);
+    }
+
+
+    if(event->key() == Qt::Key_X)
+    {
+        delete goomba;
+        goomba = new FloppyBird(2.4,12,0.27f,&timer,QPixmap(":/image/goo.png").scaled(height()/9.0,height()/9.0),world,scene);
+    }
+
+    if(event->key() == Qt::Key_C)
+    {
+        delete blue;
+        blue = new SprintBird(2.4,12,0.27f,&timer,QPixmap(":/image/blue_bird").scaled(height()/9.0,height()/9.0),world,scene);
+    }
+
 }

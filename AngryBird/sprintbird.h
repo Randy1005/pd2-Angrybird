@@ -1,5 +1,5 @@
-#ifndef BIRD_H
-#define BIRD_H
+#ifndef SPRINTBIRD_H
+#define SPRINTBIRD_H
 
 #include <gameitem.h>
 #include <QPixmap>
@@ -10,14 +10,13 @@
 #define BIRD_FRICTION 0.2f
 #define BIRD_RESTITUTION 0.5f
 
-class Bird : public GameItem
+class SprintBird : public GameItem
 {
 public:
-    Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
+    SprintBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
     void setLinearVelocity(b2Vec2 velocity);
     virtual void birdFunction();
-
-
 };
 
-#endif // BIRD_H
+
+#endif // SPRINTBIRD_H

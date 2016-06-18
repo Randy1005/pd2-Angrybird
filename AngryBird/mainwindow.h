@@ -16,6 +16,8 @@
 #include <bird.h>
 #include <belt.h>
 #include <barrier.h>
+#include <floppybird.h>
+#include <sprintbird.h>
 
 namespace Ui {
 class MainWindow;
@@ -31,17 +33,26 @@ public:
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
+    void keyPressEvent(QKeyEvent *event);
 
     //items
     Bird *mushroom;
-    Bird *goomba;
+    FloppyBird *goomba;
+    SprintBird *blue;
+    QList<GameItem *> BirdList;
     Barrier *wood;
     Barrier *wood2;
     Barrier *hori_wood;
     Bird *lbj;
+    b2Vec2 mousePosition;
+    bool mousePressed;
 
-    int click = 0;
-    int cnt = 0;
+
+    int click = 0; //mouse click time capture, when I click once it runs 5 times
+    int cnt = 0; //to record the 'real' mouse click time
+
+    bool firstFired = false;
+    bool secondFired = false;
 
 
 signals:

@@ -21,6 +21,12 @@ void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
     g_windowsize = windowsize;
 }
 
+void GameItem::birdFunction()
+{
+    //here we practice polymorphism, by adding a virtual birdFunction (the function of the FLOPPYBIRD)
+    g_body->SetLinearVelocity(b2Vec2(6,6));
+}
+
 void GameItem::paint()
 {
     b2Vec2 pos = g_body->GetPosition();

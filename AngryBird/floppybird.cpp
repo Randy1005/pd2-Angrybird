@@ -1,6 +1,6 @@
-#include "bird.h"
+#include "floppybird.h"
 
-Bird::Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
+FloppyBird::FloppyBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene):GameItem(world)
 {
     // Set pixmap
     g_pixmap.setPixmap(pixmap);
@@ -30,12 +30,8 @@ Bird::Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2Worl
     scene->addItem(&g_pixmap);
 }
 
-void Bird::setLinearVelocity(b2Vec2 velocity)
+void FloppyBird::setLinearVelocity(b2Vec2 velocity)
 {
     g_body->SetLinearVelocity(velocity);
 }
 
-void Bird::birdFunction()
-{
-    //for the ordinary bird, no bird function
-}

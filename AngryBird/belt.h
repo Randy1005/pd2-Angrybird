@@ -13,8 +13,9 @@
 class Belt : public GameItem
 {
 public:
-    Belt(float x, float y, float radius,int amount, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene,b2Body *relativeBody);
-
+    Belt(float x, float y, float radius, int amount, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
+    b2Body *prev_body;
+    b2RevoluteJoint *revjoint;
 };
 
 #endif // BELT_H

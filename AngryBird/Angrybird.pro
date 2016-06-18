@@ -19,7 +19,9 @@ SOURCES += main.cpp\
     land.cpp \
     slingshot.cpp \
     belt.cpp \
-    barrier.cpp
+    barrier.cpp \
+    floppybird.cpp \
+    sprintbird.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -74,7 +76,9 @@ HEADERS  += mainwindow.h \
     land.h \
     slingshot.h \
     belt.h \
-    barrier.h
+    barrier.h \
+    floppybird.h \
+    sprintbird.h
 
 FORMS    += mainwindow.ui
 

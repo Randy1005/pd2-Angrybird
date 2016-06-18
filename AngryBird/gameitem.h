@@ -14,6 +14,7 @@ public:
     GameItem(b2World *world);
     ~GameItem();
     static void setGlobalSize(QSizeF worldsize, QSizeF windowsize);
+    virtual void birdFunction();
 
 public slots:
     void paint();
