@@ -19,7 +19,7 @@ public:
     virtual void birdFunction();
 
 
-    //split piece
+    //The fist of god!!!!!!
     Bird *fist;
     bool activateAbility = false;
 };

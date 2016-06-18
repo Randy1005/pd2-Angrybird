@@ -20,6 +20,7 @@
 #include <sprintbird.h>
 #include <strikebird.h>
 #include <QPushButton>
+#include <QLabel>
 
 namespace Ui {
 class MainWindow;
@@ -38,6 +39,7 @@ public:
     void keyPressEvent(QKeyEvent *event);
     void resetBirds();
     void resetBarriers_n_Enemy();
+    void scoreIncrement();
 
     //Birds
     Bird *mushroom;
@@ -46,15 +48,34 @@ public:
     StrikeBird *turtle;
     Bird *fist;
     QList<GameItem *> BirdList;
+
     //items
-    Slingshot *sling;
+    /*I consider taking off the slingshot first, replace it by a single point, to avoid
+     * the problem of getting blocked by the body of sling*/
+    //Slingshot *sling;
     Barrier *wood;
     Barrier *wood2;
     Barrier *hori_wood;
     Bird *lbj;
-    b2Vec2 mousePosition;
-    bool mousePressed;
 
+    float x_cor;
+    float y_cor;
+    b2Vec2 mousePosition;
+
+    float basePt_x;
+    float basePt_y;
+    b2Vec2 basePosition;
+
+    b2Vec2 forceVector;
+
+    bool mousePressed = false;
+    bool scoreStart = false;
+    //Score
+    QLabel *score;
+    int scoreNum = 0;
+
+    //check if it's connected, or else the speed keeps increasing
+    bool isConnected;
 
     int click = 0; //mouse click time capture, when I click once it runs 5 times
     int cnt = 0; //to record the 'real' mouse click time
