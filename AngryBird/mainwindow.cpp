@@ -31,6 +31,12 @@ void MainWindow::showEvent(QShowEvent *)
     bg = bg.scaled(960,540);
     scene->setBackgroundBrush(bg);
 
+    //bgm
+    bgm = new QMediaPlayer();
+    bgm->setMedia(QUrl("qrc:/sound/Super Mario Bros. Music - Ground Theme (1).1.mp3"));
+    bgm->setVolume(50);
+    bgm->play();
+
     //Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));
 
@@ -172,7 +178,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         basePosition = b2Vec2(basePt_x,basePt_y);
 
         /*calculate the vector of (basePosition - mousePosition) to get forceVector*/
-        float k = 40; //spring constant
+        float k = 900; //spring constant
         forceVector = k*(basePosition - mousePosition);
 
 
@@ -180,38 +186,56 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         if(cnt==1 && mousePressed == true)
         {
             mushroom->g_body->SetTransform(mousePosition, mushroom->g_body->GetAngle());
-            //applyforce
-            mushroom->g_body->ApplyForceToCenter(forceVector,true);
+
         }
 
         if(cnt==2 && mousePressed == true)
         {
             goomba->g_body->SetTransform(mousePosition, goomba->g_body->GetAngle());
-            //apply force
-            goomba->g_body->ApplyForceToCenter(forceVector,true);
         }
 
         if(cnt==3 && mousePressed == true)
         {
             kirby->g_body->SetTransform(mousePosition, kirby->g_body->GetAngle());
-            //apply force
-            kirby->g_body->ApplyForceToCenter(forceVector,true);
         }
 
         if(cnt==4 && mousePressed == true)
         {
             turtle->g_body->SetTransform(mousePosition, turtle->g_body->GetAngle());
-            //apply force
-            turtle->g_body->ApplyForceToCenter(forceVector,true);
         }
 
         /*debug*/
-        std::cout <<"cursor: "<< x_cor <<" "<< y_cor <<std::endl ;
+        //std::cout <<"cursor: "<< x_cor <<" "<< y_cor <<std::endl ;
     }
 
     if(event->type() == QEvent::MouseButtonRelease)
     {
         mousePressed = false; //set flag back to false
+
+        //then apply force to each body
+        if(cnt==1)
+        {
+            //applyforce
+            mushroom->g_body->ApplyForceToCenter(forceVector,true);
+        }
+
+        if(cnt==2)
+        {
+            //apply force
+            goomba->g_body->ApplyForceToCenter(forceVector,true);
+        }
+
+        if(cnt==3)
+        {
+            //apply force
+            kirby->g_body->ApplyForceToCenter(forceVector,true);
+        }
+
+        if(cnt==4)
+        {
+            //apply force
+            turtle->g_body->ApplyForceToCenter(forceVector,true);
+        }
     }
 
     return false;
@@ -234,7 +258,7 @@ void MainWindow::tick()
     }
 
     /*if the enemy "lbj" rotates(angular velocity !=0) or moves(linear velocity !=0) then we add up the score*/
-    if((lbj->g_body->GetAngularVelocity() != 0 || lbj->g_body->GetLinearVelocity().x != 0 || lbj->g_body->GetLinearVelocity().y != 0) && scoreStart)
+    if((lbj->g_body->GetAngularVelocity() != 0 || lbj->g_body->GetLinearVelocity().x != 0 || lbj->g_body->GetLinearVelocity().y != 0) && scoreStart && enemyExist)
     {
         scoreIncrement();
     }
@@ -263,6 +287,7 @@ void MainWindow::resetGame()
     delete wood2;
     delete hori_wood;
     delete lbj;
+    delete bgm;
     resetBirds();
     resetBarriers_n_Enemy();
 
@@ -282,7 +307,7 @@ void MainWindow::QUITSLOT()
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     /*spawn different birds on slingshot*/
-
+    /*
     if(event->key() == Qt::Key_Z)
     {
         delete mushroom;
@@ -307,6 +332,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         delete turtle;
         turtle = new StrikeBird(2.4,12,1.0f,&timer,QPixmap(":/image/turtle.png").scaled(height()/8.0,height()/8.0),world,scene);
     }
+    */
 
     /*activate abilities(birdFunction)*/
 
@@ -347,6 +373,11 @@ void MainWindow::resetBirds()
     fist = new Bird(18,40,0.6f,&timer,QPixmap(":/image/fist.png").scaled(height()*0.75,height()*0.75),world,scene);
     fist->g_body->SetAwake(false); //deactivate the fist at first, wait for strike bird
 
+    //bgm
+    bgm = new QMediaPlayer();
+    bgm->setMedia(QUrl("qrc:/sound/Super Mario Bros. Music - Ground Theme (1).1.mp3"));
+    bgm->setVolume(70);
+    bgm->play();
 }
 
 void MainWindow::resetBarriers_n_Enemy()
@@ -369,6 +400,8 @@ void MainWindow::scoreIncrement()
     {
         score->setText("YOU WIN!!");
         score->setFont(QFont("Courier",24,QFont::Black));
+        //enemyExist = false; //next we delete the enemy, change the bool value first
+        //delete lbj;
     }
     else
         score->setText(QString::number(scoreNum));

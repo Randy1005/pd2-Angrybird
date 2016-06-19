@@ -11,13 +11,13 @@ MAKEFILE      = Makefile.Debug
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -g -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -g -std=gnu++0x -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I. -ID:\QtmingGW\5.6\mingw49_32\include -ID:\QtmingGW\5.6\mingw49_32\include\QtWidgets -ID:\QtmingGW\5.6\mingw49_32\include\QtGui -ID:\QtmingGW\5.6\mingw49_32\include\QtANGLE -ID:\QtmingGW\5.6\mingw49_32\include\QtCore -Idebug -I. -ID:\QtmingGW\5.6\mingw49_32\mkspecs\win32-g++ 
+INCPATH       = -I. -ID:\QtmingGW\5.6\mingw49_32\include -ID:\QtmingGW\5.6\mingw49_32\include\QtMultimedia -ID:\QtmingGW\5.6\mingw49_32\include\QtWidgets -ID:\QtmingGW\5.6\mingw49_32\include\QtGui -ID:\QtmingGW\5.6\mingw49_32\include\QtANGLE -ID:\QtmingGW\5.6\mingw49_32\include\QtNetwork -ID:\QtmingGW\5.6\mingw49_32\include\QtCore -Idebug -I. -ID:\QtmingGW\5.6\mingw49_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LD:\QtmingGW\5.6\mingw49_32\lib D:\QtmingGW\5.6\mingw49_32\lib\libqtmaind.a -LC:\utils\postgresql\pgsql\lib -LC:\utils\my_sql\my_sql\lib -lshell32 -L. -lBox2D D:\QtmingGW\5.6\mingw49_32\lib\libQt5Widgetsd.a D:\QtmingGW\5.6\mingw49_32\lib\libQt5Guid.a D:\QtmingGW\5.6\mingw49_32\lib\libQt5Cored.a 
+LIBS        =        -lmingw32 -LD:\QtmingGW\5.6\mingw49_32\lib D:\QtmingGW\5.6\mingw49_32\lib\libqtmaind.a -LC:\utils\postgresql\pgsql\lib -LC:\utils\my_sql\my_sql\lib -lshell32 -L. -lBox2D D:\QtmingGW\5.6\mingw49_32\lib\libQt5Multimediad.a D:\QtmingGW\5.6\mingw49_32\lib\libQt5Widgetsd.a D:\QtmingGW\5.6\mingw49_32\lib\libQt5Guid.a D:\QtmingGW\5.6\mingw49_32\lib\libQt5Networkd.a D:\QtmingGW\5.6\mingw49_32\lib\libQt5Cored.a 
 QMAKE         = D:\QtmingGW\5.6\mingw49_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -48,8 +48,6 @@ SOURCES       = main.cpp \
 		gameitem.cpp \
 		bird.cpp \
 		land.cpp \
-		slingshot.cpp \
-		belt.cpp \
 		barrier.cpp \
 		floppybird.cpp \
 		sprintbird.cpp \
@@ -61,8 +59,6 @@ OBJECTS       = debug/main.o \
 		debug/gameitem.o \
 		debug/bird.o \
 		debug/land.o \
-		debug/slingshot.o \
-		debug/belt.o \
 		debug/barrier.o \
 		debug/floppybird.o \
 		debug/sprintbird.o \
@@ -122,8 +118,6 @@ DIST          =  mainwindow.h \
 		gameitem.h \
 		bird.h \
 		land.h \
-		slingshot.h \
-		belt.h \
 		barrier.h \
 		floppybird.h \
 		sprintbird.h \
@@ -132,8 +126,6 @@ DIST          =  mainwindow.h \
 		gameitem.cpp \
 		bird.cpp \
 		land.cpp \
-		slingshot.cpp \
-		belt.cpp \
 		barrier.cpp \
 		floppybird.cpp \
 		sprintbird.cpp \
@@ -157,10 +149,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) AngryThing.zip $(SOURCES) $(DIST) Angrybird.pro D:\QtmingGW\5.6\mingw49_32\mkspecs\features\spec_pre.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\qdevice.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\features\device_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\common\angle.conf D:\QtmingGW\5.6\mingw49_32\mkspecs\qconfig.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_clucene_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_core.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_core_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_designer.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_designer_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_gui.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_gui_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_help.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_help_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_labscontrols_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_labstemplates_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_location.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_location_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_network.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_network_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_platformsupport_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qml.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qml_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quick.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quick_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_script.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_script_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sql.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sql_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_svg.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_svg_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_uiplugin.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xml.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xml_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qt_functions.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qt_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\qt_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\win32-g++\qmake.conf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\spec_post.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\exclusive_builds.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\default_pre.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\default_pre.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\resolve_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\exclusive_builds_post.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\default_post.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\build_pass.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qml_debug.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\rtti.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\precompile_header.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\warn_on.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qt.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\resources.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\moc.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\opengl.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\uic.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\file_copies.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\windows.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\testcase_targets.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\exceptions.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\yacc.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\lex.prf Angrybird.pro res.qrc D:\QtmingGW\5.6\mingw49_32\lib\qtmaind.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Widgetsd.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Guid.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) AngryThing.zip $(SOURCES) $(DIST) Angrybird.pro D:\QtmingGW\5.6\mingw49_32\mkspecs\features\spec_pre.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\qdevice.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\features\device_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\common\angle.conf D:\QtmingGW\5.6\mingw49_32\mkspecs\qconfig.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_clucene_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_core.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_core_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_designer.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_designer_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_gui.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_gui_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_help.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_help_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_labscontrols_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_labstemplates_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_location.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_location_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_network.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_network_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_platformsupport_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qml.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qml_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quick.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quick_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_script.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_script_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sql.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_sql_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_svg.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_svg_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_uiplugin.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xml.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xml_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qt_functions.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qt_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\qt_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\win32-g++\qmake.conf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\spec_post.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\exclusive_builds.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\default_pre.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\default_pre.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\resolve_config.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\exclusive_builds_post.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\default_post.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\build_pass.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qml_debug.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\rtti.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\precompile_header.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\warn_on.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\qt.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\resources.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\moc.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\opengl.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\uic.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\file_copies.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\win32\windows.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\testcase_targets.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\exceptions.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\yacc.prf D:\QtmingGW\5.6\mingw49_32\mkspecs\features\lex.prf Angrybird.pro res.qrc D:\QtmingGW\5.6\mingw49_32\lib\qtmaind.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Multimediad.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Widgetsd.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Guid.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Networkd.prl D:\QtmingGW\5.6\mingw49_32\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\gameitem.o debug\bird.o debug\land.o debug\slingshot.o debug\belt.o debug\barrier.o debug\floppybird.o debug\sprintbird.o debug\strikebird.o debug\qrc_res.o debug\moc_mainwindow.o debug\moc_gameitem.o
+	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\gameitem.o debug\bird.o debug\land.o debug\barrier.o debug\floppybird.o debug\sprintbird.o debug\strikebird.o debug\qrc_res.o debug\moc_mainwindow.o debug\moc_gameitem.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -191,7 +183,8 @@ debug/qrc_res.cpp: res.qrc \
 		image/barrier.png \
 		image/goo.png \
 		image/fist.png \
-		image/tri_bird.png
+		image/tri_bird.png \
+		image/background.jpg
 	D:\QtmingGW\5.6\mingw49_32\bin\rcc.exe -name res res.qrc -o debug\qrc_res.cpp
 
 compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_gameitem.cpp
@@ -375,8 +368,26 @@ debug/moc_mainwindow.cpp: D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QMainWind
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QLabel \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qlabel.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/QMediaPlayer \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaplayer.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaobject.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qtmultimediadefs.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmultimedia.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediacontent.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaresource.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtNetwork/qnetworkrequest.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QSharedDataPointer \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QString \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QUrl \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QVariant \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmetaobject.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/QSound \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qsound.h \
 		mainwindow.h
-	D:\QtmingGW\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/QtmingGW/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/chris/Desktop/pd2-Angrybird/AngryBird -ID:/QtmingGW/5.6/mingw49_32/include -ID:/QtmingGW/5.6/mingw49_32/include/QtWidgets -ID:/QtmingGW/5.6/mingw49_32/include/QtGui -ID:/QtmingGW/5.6/mingw49_32/include/QtANGLE -ID:/QtmingGW/5.6/mingw49_32/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp
+	D:\QtmingGW\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/QtmingGW/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/chris/Desktop/pd2-Angrybird/AngryBird -ID:/QtmingGW/5.6/mingw49_32/include -ID:/QtmingGW/5.6/mingw49_32/include/QtMultimedia -ID:/QtmingGW/5.6/mingw49_32/include/QtWidgets -ID:/QtmingGW/5.6/mingw49_32/include/QtGui -ID:/QtmingGW/5.6/mingw49_32/include/QtANGLE -ID:/QtmingGW/5.6/mingw49_32/include/QtNetwork -ID:/QtmingGW/5.6/mingw49_32/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_gameitem.cpp: Box2D/Box2D.h \
 		Box2D/Common/b2Settings.h \
@@ -516,7 +527,7 @@ debug/moc_gameitem.cpp: Box2D/Box2D.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QtMath \
 		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmath.h \
 		gameitem.h
-	D:\QtmingGW\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/QtmingGW/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/chris/Desktop/pd2-Angrybird/AngryBird -ID:/QtmingGW/5.6/mingw49_32/include -ID:/QtmingGW/5.6/mingw49_32/include/QtWidgets -ID:/QtmingGW/5.6/mingw49_32/include/QtGui -ID:/QtmingGW/5.6/mingw49_32/include/QtANGLE -ID:/QtmingGW/5.6/mingw49_32/include/QtCore gameitem.h -o debug\moc_gameitem.cpp
+	D:\QtmingGW\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/QtmingGW/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/chris/Desktop/pd2-Angrybird/AngryBird -ID:/QtmingGW/5.6/mingw49_32/include -ID:/QtmingGW/5.6/mingw49_32/include/QtMultimedia -ID:/QtmingGW/5.6/mingw49_32/include/QtWidgets -ID:/QtmingGW/5.6/mingw49_32/include/QtGui -ID:/QtmingGW/5.6/mingw49_32/include/QtANGLE -ID:/QtmingGW/5.6/mingw49_32/include/QtNetwork -ID:/QtmingGW/5.6/mingw49_32/include/QtCore gameitem.h -o debug\moc_gameitem.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -717,6 +728,24 @@ debug/main.o: main.cpp mainwindow.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QLabel \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qlabel.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qframe.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/QMediaPlayer \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaplayer.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaobject.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qtmultimediadefs.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmultimedia.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediacontent.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaresource.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtNetwork/qnetworkrequest.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QSharedDataPointer \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QString \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QUrl \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QVariant \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmetaobject.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/QSound \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qsound.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QApplication \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qapplication.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcoreapplication.h \
@@ -904,8 +933,25 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QLabel \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qlabel.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qframe.h \
-		ui_mainwindow.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/QMediaPlayer \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaplayer.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaobject.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qtmultimediadefs.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmultimedia.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediacontent.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaresource.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtNetwork/qnetworkrequest.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QSharedDataPointer \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QString \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QUrl \
 		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QVariant \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmetaobject.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/QSound \
+		D:/QtmingGW/5.6/mingw49_32/include/QtMultimedia/qsound.h \
+		ui_mainwindow.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QAction \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qaction.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qactiongroup.h \
@@ -1373,296 +1419,6 @@ debug/land.o: land.cpp land.h \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QGraphicsScene \
 		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\land.o land.cpp
-
-debug/slingshot.o: slingshot.cpp slingshot.h \
-		gameitem.h \
-		Box2D/Box2D.h \
-		Box2D/Common/b2Settings.h \
-		Box2D/Common/b2Draw.h \
-		Box2D/Common/b2Math.h \
-		Box2D/Common/b2Timer.h \
-		Box2D/Collision/Shapes/b2CircleShape.h \
-		Box2D/Collision/Shapes/b2Shape.h \
-		Box2D/Common/b2BlockAllocator.h \
-		Box2D/Collision/b2Collision.h \
-		Box2D/Collision/Shapes/b2EdgeShape.h \
-		Box2D/Collision/Shapes/b2ChainShape.h \
-		Box2D/Collision/Shapes/b2PolygonShape.h \
-		Box2D/Collision/b2BroadPhase.h \
-		Box2D/Collision/b2DynamicTree.h \
-		Box2D/Common/b2GrowableStack.h \
-		Box2D/Collision/b2Distance.h \
-		Box2D/Collision/b2TimeOfImpact.h \
-		Box2D/Dynamics/b2Body.h \
-		Box2D/Dynamics/b2Fixture.h \
-		Box2D/Dynamics/b2WorldCallbacks.h \
-		Box2D/Dynamics/b2TimeStep.h \
-		Box2D/Dynamics/b2World.h \
-		Box2D/Common/b2StackAllocator.h \
-		Box2D/Dynamics/b2ContactManager.h \
-		Box2D/Dynamics/Contacts/b2Contact.h \
-		Box2D/Dynamics/Joints/b2DistanceJoint.h \
-		Box2D/Dynamics/Joints/b2Joint.h \
-		Box2D/Dynamics/Joints/b2FrictionJoint.h \
-		Box2D/Dynamics/Joints/b2GearJoint.h \
-		Box2D/Dynamics/Joints/b2MotorJoint.h \
-		Box2D/Dynamics/Joints/b2MouseJoint.h \
-		Box2D/Dynamics/Joints/b2PrismaticJoint.h \
-		Box2D/Dynamics/Joints/b2PulleyJoint.h \
-		Box2D/Dynamics/Joints/b2RevoluteJoint.h \
-		Box2D/Dynamics/Joints/b2RopeJoint.h \
-		Box2D/Dynamics/Joints/b2WeldJoint.h \
-		Box2D/Dynamics/Joints/b2WheelJoint.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QGraphicsPixmapItem \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qgraphicsitem.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qglobal.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qconfig.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qfeatures.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsystemdetection.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qprocessordetection.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcompilerdetection.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qtypeinfo.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qtypetraits.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qisenum.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsysinfo.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qlogging.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qflags.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qbasicatomic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_bootstrap.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qgenericatomic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_cxx11.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_gcc.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_msvc.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_armv7.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_armv6.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_armv5.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_ia64.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_x86.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_unix.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qglobalstatic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmutex.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qnumeric.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qversiontagging.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobject.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qnamespace.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstring.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qchar.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qbytearray.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qrefcount.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qarraydata.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstringbuilder.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qlist.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qalgorithms.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qiterator.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qhashfunctions.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qpair.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qbytearraylist.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstringlist.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qregexp.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstringmatcher.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcoreevent.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qscopedpointer.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmetatype.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobject_impl.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qvariant.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmap.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qdebug.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qhash.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qtextstream.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qiodevice.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qlocale.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qshareddata.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qvector.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qpoint.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qset.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qrect.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmargins.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsize.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpainterpath.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qmatrix.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpolygon.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qregion.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qdatastream.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qline.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpixmap.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpaintdevice.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qcolor.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qrgb.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qrgba64.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsharedpointer.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsharedpointer_impl.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qimage.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpixelformat.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qtransform.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/QPainter \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpainter.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qtextoption.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpen.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qbrush.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qfontinfo.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qfont.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qfontmetrics.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/QTransform \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QtMath \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmath.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QGraphicsScene \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qgraphicsscene.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\slingshot.o slingshot.cpp
-
-debug/belt.o: belt.cpp belt.h \
-		gameitem.h \
-		Box2D/Box2D.h \
-		Box2D/Common/b2Settings.h \
-		Box2D/Common/b2Draw.h \
-		Box2D/Common/b2Math.h \
-		Box2D/Common/b2Timer.h \
-		Box2D/Collision/Shapes/b2CircleShape.h \
-		Box2D/Collision/Shapes/b2Shape.h \
-		Box2D/Common/b2BlockAllocator.h \
-		Box2D/Collision/b2Collision.h \
-		Box2D/Collision/Shapes/b2EdgeShape.h \
-		Box2D/Collision/Shapes/b2ChainShape.h \
-		Box2D/Collision/Shapes/b2PolygonShape.h \
-		Box2D/Collision/b2BroadPhase.h \
-		Box2D/Collision/b2DynamicTree.h \
-		Box2D/Common/b2GrowableStack.h \
-		Box2D/Collision/b2Distance.h \
-		Box2D/Collision/b2TimeOfImpact.h \
-		Box2D/Dynamics/b2Body.h \
-		Box2D/Dynamics/b2Fixture.h \
-		Box2D/Dynamics/b2WorldCallbacks.h \
-		Box2D/Dynamics/b2TimeStep.h \
-		Box2D/Dynamics/b2World.h \
-		Box2D/Common/b2StackAllocator.h \
-		Box2D/Dynamics/b2ContactManager.h \
-		Box2D/Dynamics/Contacts/b2Contact.h \
-		Box2D/Dynamics/Joints/b2DistanceJoint.h \
-		Box2D/Dynamics/Joints/b2Joint.h \
-		Box2D/Dynamics/Joints/b2FrictionJoint.h \
-		Box2D/Dynamics/Joints/b2GearJoint.h \
-		Box2D/Dynamics/Joints/b2MotorJoint.h \
-		Box2D/Dynamics/Joints/b2MouseJoint.h \
-		Box2D/Dynamics/Joints/b2PrismaticJoint.h \
-		Box2D/Dynamics/Joints/b2PulleyJoint.h \
-		Box2D/Dynamics/Joints/b2RevoluteJoint.h \
-		Box2D/Dynamics/Joints/b2RopeJoint.h \
-		Box2D/Dynamics/Joints/b2WeldJoint.h \
-		Box2D/Dynamics/Joints/b2WheelJoint.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QGraphicsPixmapItem \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qgraphicsitem.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qglobal.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qconfig.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qfeatures.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsystemdetection.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qprocessordetection.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcompilerdetection.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qtypeinfo.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qtypetraits.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qisenum.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsysinfo.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qlogging.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qflags.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qbasicatomic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_bootstrap.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qgenericatomic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_cxx11.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_gcc.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_msvc.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_armv7.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_armv6.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_armv5.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_ia64.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_x86.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qatomic_unix.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qglobalstatic.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmutex.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qnumeric.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qversiontagging.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobject.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobjectdefs.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qnamespace.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobjectdefs_impl.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstring.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qchar.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qbytearray.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qrefcount.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qarraydata.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstringbuilder.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qlist.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qalgorithms.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qiterator.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qhashfunctions.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qpair.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qbytearraylist.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstringlist.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qregexp.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qstringmatcher.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcoreevent.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qscopedpointer.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmetatype.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qvarlengtharray.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcontainerfwd.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qobject_impl.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qvariant.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmap.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qdebug.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qhash.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qtextstream.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qiodevice.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qlocale.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qshareddata.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qvector.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qpoint.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qset.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qcontiguouscache.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qrect.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmargins.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsize.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpainterpath.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qmatrix.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpolygon.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qregion.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qwindowdefs.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qwindowdefs_win.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qdatastream.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qline.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpixmap.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpaintdevice.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qcolor.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qrgb.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qrgba64.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsharedpointer.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qsharedpointer_impl.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qimage.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpixelformat.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qtransform.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/QPainter \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpainter.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qtextoption.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qpen.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qbrush.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qfontinfo.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qfont.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/qfontmetrics.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/QTransform \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QtMath \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qmath.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtGui/QPixmap \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/QGraphicsScene \
-		D:/QtmingGW/5.6/mingw49_32/include/QtWidgets/qgraphicsscene.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/QTimer \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qtimer.h \
-		D:/QtmingGW/5.6/mingw49_32/include/QtCore/qbasictimer.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\belt.o belt.cpp
 
 debug/barrier.o: barrier.cpp barrier.h \
 		gameitem.h \

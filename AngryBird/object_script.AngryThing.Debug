@@ -4,8 +4,6 @@ INPUT(
 ./debug\gameitem.o
 ./debug\bird.o
 ./debug\land.o
-./debug\slingshot.o
-./debug\belt.o
 ./debug\barrier.o
 ./debug\floppybird.o
 ./debug\sprintbird.o

@@ -13,5 +13,8 @@
         <file>image/turtle.png</file>
         <file>image/fist.png</file>
         <file>image/background.jpg</file>
+        <file>sound/Super Mario Bros. Music - Ground Theme (1).1.mp3</file>
+        <file>../../../Downloads/Really Nigga Sound Effect.wav</file>
+        <file>sound/Really Nigga Sound Effect.mp3</file>
     </qresource>
 </RCC>

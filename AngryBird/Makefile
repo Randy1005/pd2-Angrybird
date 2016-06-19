@@ -192,8 +192,10 @@ Makefile: Angrybird.pro D:/QtmingGW/5.6/mingw49_32/mkspecs/win32-g++/qmake.conf 
 		D:/QtmingGW/5.6/mingw49_32/mkspecs/features/lex.prf \
 		Angrybird.pro \
 		D:/QtmingGW/5.6/mingw49_32/lib/qtmaind.prl \
+		D:/QtmingGW/5.6/mingw49_32/lib/Qt5Multimedia.prl \
 		D:/QtmingGW/5.6/mingw49_32/lib/Qt5Widgets.prl \
 		D:/QtmingGW/5.6/mingw49_32/lib/Qt5Gui.prl \
+		D:/QtmingGW/5.6/mingw49_32/lib/Qt5Network.prl \
 		D:/QtmingGW/5.6/mingw49_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile Angrybird.pro
 D:/QtmingGW/5.6/mingw49_32/mkspecs/features/spec_pre.prf:
@@ -329,8 +331,10 @@ D:/QtmingGW/5.6/mingw49_32/mkspecs/features/yacc.prf:
 D:/QtmingGW/5.6/mingw49_32/mkspecs/features/lex.prf:
 Angrybird.pro:
 D:/QtmingGW/5.6/mingw49_32/lib/qtmaind.prl:
+D:/QtmingGW/5.6/mingw49_32/lib/Qt5Multimedia.prl:
 D:/QtmingGW/5.6/mingw49_32/lib/Qt5Widgets.prl:
 D:/QtmingGW/5.6/mingw49_32/lib/Qt5Gui.prl:
+D:/QtmingGW/5.6/mingw49_32/lib/Qt5Network.prl:
 D:/QtmingGW/5.6/mingw49_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile Angrybird.pro

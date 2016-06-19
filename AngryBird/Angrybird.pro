@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,8 +18,6 @@ SOURCES += main.cpp\
     gameitem.cpp \
     bird.cpp \
     land.cpp \
-    slingshot.cpp \
-    belt.cpp \
     barrier.cpp \
     floppybird.cpp \
     sprintbird.cpp \
@@ -75,8 +74,6 @@ HEADERS  += mainwindow.h \
     gameitem.h \
     bird.h \
     land.h \
-    slingshot.h \
-    belt.h \
     barrier.h \
     floppybird.h \
     sprintbird.h \

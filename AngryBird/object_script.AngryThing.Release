@@ -4,8 +4,6 @@ INPUT(
 ./release\gameitem.o
 ./release\bird.o
 ./release\land.o
-./release\slingshot.o
-./release\belt.o
 ./release\barrier.o
 ./release\floppybird.o
 ./release\sprintbird.o

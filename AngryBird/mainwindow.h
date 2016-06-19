@@ -21,6 +21,8 @@
 #include <strikebird.h>
 #include <QPushButton>
 #include <QLabel>
+#include <QMediaPlayer>
+#include <QSound>
 
 namespace Ui {
 class MainWindow;
@@ -49,6 +51,9 @@ public:
     Bird *fist;
     QList<GameItem *> BirdList;
 
+    //bgm and SFX
+    QMediaPlayer *bgm;
+
     //items
     /*I consider taking off the slingshot first, replace it by a single point, to avoid
      * the problem of getting blocked by the body of sling*/
@@ -69,8 +74,6 @@ public:
 
     b2Vec2 forceVector;
 
-
-
     //Score
     QLabel *score;
     int scoreNum = 0;
@@ -81,6 +84,9 @@ public:
 
     int click = 0; //mouse click time capture, when I click once it runs 5 times
     int cnt = 0; //to record the 'real' mouse click time
+
+    //bool variable to judge if the enemy exists(if we delete it, it misght cause runtime error)
+    bool enemyExist = true;
 
 
 signals:
