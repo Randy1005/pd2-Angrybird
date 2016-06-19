@@ -12,5 +12,6 @@
         <file>image/kirby.png</file>
         <file>image/turtle.png</file>
         <file>image/fist.png</file>
+        <file>image/background.jpg</file>
     </qresource>
 </RCC>

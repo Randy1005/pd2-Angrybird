@@ -7,6 +7,9 @@ INPUT(
 ./debug\slingshot.o
 ./debug\belt.o
 ./debug\barrier.o
+./debug\floppybird.o
+./debug\sprintbird.o
+./debug\strikebird.o
 ./debug\qrc_res.o
 ./debug\moc_mainwindow.o
 ./debug\moc_gameitem.o

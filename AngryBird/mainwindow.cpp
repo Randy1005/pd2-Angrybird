@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     // Enable the event Filter
     qApp->installEventFilter(this);
 }
@@ -23,6 +25,12 @@ void MainWindow::showEvent(QShowEvent *)
     scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
     ui->graphicsView->setScene(scene);
 
+    //set background
+    QImage bg;
+    bg.load(":/image/background.jpg");
+    bg = bg.scaled(960,540);
+    scene->setBackgroundBrush(bg);
+
     //Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));
 
@@ -32,15 +40,24 @@ void MainWindow::showEvent(QShowEvent *)
     //Create ground
     itemList.push_back(new Land(16,1.5,32,3,QPixmap(":/image/ground.png").scaled(width()*2,height()/5.0),world,scene));
 
+    //add slingshot image (just image, no box2D body)
+    QGraphicsPixmapItem *slingShot = new QGraphicsPixmapItem();
+    QPixmap slingPic;
+    slingPic.load(":/image/slingshot.png");
+    slingPic = slingPic.scaled(slingPic.width()*0.07, slingPic.height()*0.07, Qt::KeepAspectRatio);
+    slingShot->setPixmap(slingPic);
+    slingShot->setPos(170,300);
+    scene->addItem(slingShot);
+
     //Create slingshot(removed tempararily)
     //sling = new Slingshot(3.5,5.5,2.5,4,QPixmap(":/image/slingshot.png").scaled(width()*0.06,height()*0.3),world,scene);
 
     /*Replace slingshot with a base point(with respect to the final cursor point we dragged to)
      * and try to use ApplyForce() on the boody (requires b2Vec2(force))
      */
-    //first add base point(reference point)
-
-
+    //add base point(reference point), to indicate direction
+    QPen pen;
+    scene->addEllipse(200,300,10,10,pen,QBrush(Qt::red));
 
     //Create bird
     mushroom = new Bird(6,8,0.5f,&timer,QPixmap(":/image/mushroom.png").scaled(height()/8.0,height()/8.0),world,scene);
@@ -96,17 +113,19 @@ void MainWindow::showEvent(QShowEvent *)
     score->setGeometry(330,0,200,40);
     scene->addWidget(score);
 
-    if(!isConnected)
-    {
-        // Timer
+    //if(!isConnected)
+    //{
+        // Timer and calculate score
         connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
 
-        //button connect
-        connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
-        connect(quitBtn,SIGNAL(clicked()),this,SLOT(closeGame()));
-        connect(resetBtn,SIGNAL(clicked()),this,SLOT(resetGame()));
-    }
+    //}
     timer.start(100/6);
+
+    //button connect
+    connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
+    connect(quitBtn,SIGNAL(clicked()),this,SLOT(closeGame()));
+    connect(resetBtn,SIGNAL(clicked()),this,SLOT(resetGame()));
+
 
 }
 
@@ -148,15 +167,14 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         mousePosition = b2Vec2(x_cor,y_cor);
 
         /*store the base point*/
-        basePt_x = 5.0;
-        basePt_y = 8.0;
+        basePt_x = 6.0;
+        basePt_y = 9.0;
         basePosition = b2Vec2(basePt_x,basePt_y);
 
-        //draw a sling(Label not body)
-
         /*calculate the vector of (basePosition - mousePosition) to get forceVector*/
-        float k = 80; //spring constant
+        float k = 40; //spring constant
         forceVector = k*(basePosition - mousePosition);
+
 
         //then apply force to each body
         if(cnt==1 && mousePressed == true)
@@ -188,12 +206,12 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         }
 
         /*debug*/
-        //std::cout << x <<" "<< y <<std::endl ;
+        std::cout <<"cursor: "<< x_cor <<" "<< y_cor <<std::endl ;
     }
 
     if(event->type() == QEvent::MouseButtonRelease)
     {
-        mousePressed = false;
+        mousePressed = false; //set flag back to false
     }
 
     return false;
@@ -208,9 +226,12 @@ void MainWindow::closeEvent(QCloseEvent *)
 void MainWindow::tick()
 {
     /*to avoid score incrementing when we first set up the scene(enemy already has speed),we set up a flag*/
-    /*start score incrementing after the enemy has stopped moving*/
-    if(lbj->g_body->GetPosition().y < 5.305+0.00001 && lbj->g_body->GetPosition().y > 5.305-0.00001)
-        scoreStart = true; //the actual stable y coordinate is 5.305, we add small error
+    /*start score incrementing after I clicked for the first time*/
+
+    if(cnt==1)
+    {
+        scoreStart = true; //When I clicked for the first time, activate score calculate
+    }
 
     /*if the enemy "lbj" rotates(angular velocity !=0) or moves(linear velocity !=0) then we add up the score*/
     if((lbj->g_body->GetAngularVelocity() != 0 || lbj->g_body->GetLinearVelocity().x != 0 || lbj->g_body->GetLinearVelocity().y != 0) && scoreStart)
@@ -251,18 +272,6 @@ void MainWindow::resetGame()
     mousePressed = false;
     scoreStart = false;
 
-    disconnect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
-    disconnect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
-
-    //set "isConnected" back to false
-    isConnected = false;
-    if(!isConnected)
-    {
-        // Timer
-        connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
-        //button connect
-        connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
-    }
 }
 
 void MainWindow::QUITSLOT()
@@ -351,11 +360,16 @@ void MainWindow::resetBarriers_n_Enemy()
     lbj = new Bird(21,6,0.55f,&timer,QPixmap(":/image/LBJ.png").scaled(height()/8.0,height()/6.0),world,scene);
 }
 
+
 void MainWindow::scoreIncrement()
 {
     scoreNum += 1;
     //set a boundary score to eliminate enemy
-    //if(scoreNum >= 12000)
-        //delete lbj;
-    score->setText(QString::number(scoreNum));
+    if(scoreNum >= 600)
+    {
+        score->setText("YOU WIN!!");
+        score->setFont(QFont("Courier",24,QFont::Black));
+    }
+    else
+        score->setText(QString::number(scoreNum));
 }

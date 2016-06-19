@@ -7,6 +7,9 @@ INPUT(
 ./release\slingshot.o
 ./release\belt.o
 ./release\barrier.o
+./release\floppybird.o
+./release\sprintbird.o
+./release\strikebird.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_gameitem.o

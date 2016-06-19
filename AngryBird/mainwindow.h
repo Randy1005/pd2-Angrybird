@@ -61,6 +61,7 @@ public:
     float x_cor;
     float y_cor;
     b2Vec2 mousePosition;
+    bool mousePressed = false;
 
     float basePt_x;
     float basePt_y;
@@ -68,11 +69,12 @@ public:
 
     b2Vec2 forceVector;
 
-    bool mousePressed = false;
-    bool scoreStart = false;
+
+
     //Score
     QLabel *score;
     int scoreNum = 0;
+    bool scoreStart = false;
 
     //check if it's connected, or else the speed keeps increasing
     bool isConnected;
